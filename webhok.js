@@ -346,7 +346,7 @@ async function processUpdate(update) {
 🖤🌻→ @fxvkk → تـایـبـەت بـەکـچـان
 🖤🌻→ @namakann → نـامـەکـان
 
-🖤🌻→ @Eso_it → 🧡 سەروک جەنالەکان 🧡
+🖤🌻→ @yusuf_ismail → 🧡 سەروک جەنالەکان 🧡
 ⁦
  *`,
       parse_mode: "MarkDown",
@@ -647,7 +647,7 @@ Delete web hook✅
     await bot("sendMessage", {
       chat_id: chatId,
       text: `ئێرە داگرە بۆ بینی سەرجەم بۆتەکان 💛
-https://t.me/ashqa_kamm/3618 🧡
+https://t.me/eso_roberts/5 🧡
 `,
       reply_to_message_id: messageId
     });
