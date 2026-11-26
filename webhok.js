@@ -695,3 +695,9 @@ https://t.me/ashqa_kamm/3618 🧡
 app.listen(PORT, () => {
   console.log(`Converted PHP webhook bot listening on port ${PORT}`);
 });
+module.exports = {
+  handleWebhook: (req, res) => {
+    res.status(200).json({ ok: true });
+    // لێرەدا لۆجیکی updateـەکەی webhok.js جێبەجێ دەکرێت
+  }
+};
