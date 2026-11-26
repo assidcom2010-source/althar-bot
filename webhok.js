@@ -692,12 +692,22 @@ https://t.me/ashqa_kamm/3618 🧡
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Converted PHP webhook bot listening on port ${PORT}`);
-});
+
 module.exports = {
-  handleWebhook: (req, res) => {
-    res.status(200).json({ ok: true });
-    // لێرەدا لۆجیکی updateـەکەی webhok.js جێبەجێ دەکرێت
-  }
+  handleWebhook: async (req, res) => {
+    try {
+      const update = req.body;
+      if (!update || typeof update !== "object") {
+        return res.status(200).json({ ok: true });
+      }
+
+      // لێرەدا ئەگەر فەنکشنێکی تایبەتت هەیە بۆ مامەڵەکردن لەگەڵ updateـەکە بانگی بکە
+      // بۆ نموونە: await handleTelegramUpdate(update);
+
+      return res.status(200).json({ ok: true });
+    } catch (err) {
+      console.error("webhok error:", err);
+      return res.status(200).json({ ok: true });
+    }
+  },
 };
