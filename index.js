@@ -204,12 +204,18 @@ app.post("/webhook", async (req, res) => {
     mainKeyboard
   );
 });
-module.exports = {
-  handleWebhook: (req, res) => {
-    res.status(200).json({ ok: true });
-    // لێرەدا لۆجیکی updateـەکەی webhok.js جێبەجێ دەکرێت
-  }
-};
+const webhokBot = require("./webhok");
+
+// ڕێگای بۆتی یەکەم (ئەگەر پێشتر لە شوێنێکی تر هەیە، دووبارە مەیکەرەوە)
+app.post("/webhook", async (req, res) => {
+  // لێرە لۆجیکی بۆتی یەکەم بانگ بکە یان جێبەجێ بکە
+  res.status(200).json({ ok: true });
+});
+
+// ڕێگای بۆتی دووەم (webhok.js)
+app.post("/webhook-webhok", async (req, res) => {
+  await webhokBot.handleWebhook(req, res);
+});
 app.listen(PORT, () => {
   console.log(`Althar gaming bot server listening on port ${PORT}`);
 });
