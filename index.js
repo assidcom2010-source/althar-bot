@@ -204,7 +204,12 @@ app.post("/webhook", async (req, res) => {
     mainKeyboard
   );
 });
-
+module.exports = {
+  handleWebhook: (req, res) => {
+    res.status(200).json({ ok: true });
+    // لێرەدا لۆجیکی updateـەکەی webhok.js جێبەجێ دەکرێت
+  }
+};
 app.listen(PORT, () => {
   console.log(`Althar gaming bot server listening on port ${PORT}`);
 });
