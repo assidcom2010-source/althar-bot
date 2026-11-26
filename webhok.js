@@ -1,14 +1,9 @@
-const express = require("express");
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
 
-const app = express();
-app.use(express.json());
-
 const TOKEN = process.env.WEBHOK_BOT_TOKEN || "1145477365:AAFPGKx4l50wbvAsb2JRZLW3iIuhFu_o6WI";
 const ADMIN_ID = process.env.ADMIN_ID ? String(process.env.ADMIN_ID).trim() : "1109412636";
-const PORT = process.env.PORT || 3000;
 
 const DATA_DIR = path.join(__dirname, "data");
 const MEMBERS_FILE = path.join(__dirname, "Member.txt");
@@ -235,6 +230,7 @@ async function bot(method, datas = {}) {
 }
 
 async function sendMessage(chatId, text, parseMode = null) {
+  if (!text) return { ok: false };
   const payload = {
     chat_id: chatId,
     text: text
@@ -261,6 +257,7 @@ async function forwardMessage(kojaShe, azKoja, kodomMsg) {
 }
 
 async function editMessageText(chatId, messageId, text, parseMode = null) {
+  if (!messageId) return { ok: false };
   const payload = {
     chat_id: chatId,
     message_id: messageId,
@@ -272,14 +269,14 @@ async function editMessageText(chatId, messageId, text, parseMode = null) {
   return await bot("editMessageText", payload);
 }
 
-app.get("/", (req, res) => {
-  res.status(200).send("PHP-converted webhook bot is running on Node.js");
-});
+function getMsgId(sentObj, fallbackId) {
+  if (sentObj && sentObj.ok && sentObj.result && sentObj.result.message_id) {
+    return sentObj.result.message_id;
+  }
+  return fallbackId + 1;
+}
 
-app.post("/webhook", async (req, res) => {
-  res.status(200).json({ ok: true });
-
-  const update = req.body;
+async function processUpdate(update) {
   const message = update && update.message;
   if (!message || !message.chat || !message.from) return;
 
@@ -378,10 +375,14 @@ app.post("/webhook", async (req, res) => {
 
     const ok = ali2 && ali2.ok === true;
     if (!ok) {
-      await sendMessage(chatId, "", null);
+      await sendMessage(
+        chatId,
+        "بەرێزەکەم توکنەکەت کێشەی تێدایە 🚫 تکایە توکنێکی راست بنێرە 📬",
+        null
+      );
     } else {
       writeState(fromId, "url");
-      writeTokenFile(fromId, text);
+      writeTokenFile(fromId, token);
       await sendAction(chatId, "typing");
       await bot("sendMessage", {
         chat_id: chatId,
@@ -400,23 +401,25 @@ app.post("/webhook", async (req, res) => {
         text: "ناردنەکەت هەڵە بوو 🚫"
       });
     } else {
+      const cleanUrl = text.trim();
       writeState(fromId, "no");
-      writeUrlFile(fromId, text);
-      await bot("sendMessage", {
+      writeUrlFile(fromId, cleanUrl);
+      const sent1 = await bot("sendMessage", {
         chat_id: chatId,
         text: "• کەمێك چاوەرێ 📡 بکە 🍥 •"
       });
+      const targetMsgId = getMsgId(sent1, messageId);
       await sleep(1000);
-      await editMessageText(chatId, messageId + 1, "• وا  ⚡️ وێب هوك دەکرێ ⚙ •");
+      await editMessageText(chatId, targetMsgId, "• وا  ⚡️ وێب هوك دەکرێ ⚙ •");
       await editMessageText(
         chatId,
-        messageId + 1,
+        targetMsgId,
         `• بە سەرکەوتوی 💧 وێب هوک کرا 🍥 •
     
 • توکنی بوت 📢 •
     ${to}
 • لینکی فایل 🖱 •
-    ${text}
+    ${cleanUrl}
     
 • ئەم وشەیە لێبدە ⚡️ •
     /eso`
@@ -427,17 +430,18 @@ app.post("/webhook", async (req, res) => {
 
   if (text === "/eso") {
     if (to && to !== "no") {
-      await bot("sendMessage", {
+      const sent1 = await bot("sendMessage", {
         chat_id: chatId,
         text: "• کەمێك 📡 چاوەرێکە 🍥 •"
       });
+      const targetMsgId = getMsgId(sent1, messageId);
       await sleep(1000);
-      await editMessageText(chatId, messageId + 1, "• وا رێکی 📡 دەخەم 🍥 •");
+      await editMessageText(chatId, targetMsgId, "• وا رێکی 📡 دەخەم 🍥 •");
       await telegramApiGet(
         `https://api.telegram.org/bot${to}/setWebhook?url=${encodeURIComponent(url)}`
       );
       await sleep(1000);
-      await editMessageText(chatId, messageId + 1, "• چاوەرێکە ⚡️ تکایە ⚙ •");
+      await editMessageText(chatId, targetMsgId, "• چاوەرێکە ⚡️ تکایە ⚙ •");
       await sleep(1000);
       writeState(fromId, "no");
       await bot("sendMessage", {
@@ -485,14 +489,15 @@ app.post("/webhook", async (req, res) => {
     } else {
       writeState(fromId, "no");
       await sendAction(chatId, "typing");
-      await bot("sendMessage", {
+      const sent1 = await bot("sendMessage", {
         chat_id: chatId,
         text: "• کەمێك چاوەرێکە 📡 با ئەنجامی بدەم 🍥 •"
       });
+      const targetMsgId = getMsgId(sent1, messageId);
       await sleep(1000);
       await editMessageText(
-        chat_id || chatId,
-        messageId + 1,
+        chatId,
+        targetMsgId,
         `*• زانیاری 📬 توکن 💬 • 
 • information token bot 
 
@@ -536,20 +541,22 @@ Delete web hook✅
 .! تکایە توکنێکی راست بنێرە 📬`,
         null
       );
-    } else {
-      writeState(fromId, "no");
-      await sendAction(chatId, "typing");
-      await bot("sendMessage", {
-        chat_id: chatId,
-        text: "• کەمێك چاوەرێکە 📡 با ئەنجامی بدەم 🍥 •"
-      });
-      await sleep(1000);
-      await editMessageText(chatId, messageId + 1, "• وا ⚡️ دەسرمەوە ⚙ •");
+      return;
     }
+
+    writeState(fromId, "no");
+    await sendAction(chatId, "typing");
+    const sent1 = await bot("sendMessage", {
+      chat_id: chatId,
+      text: "• کەمێك چاوەرێکە 📡 با ئەنجامی بدەم 🍥 •"
+    });
+    const targetMsgId = getMsgId(sent1, messageId);
+    await sleep(1000);
+    await editMessageText(chatId, targetMsgId, "• وا ⚡️ دەسرمەوە ⚙ •");
 
     await telegramApiGet(`https://api.telegram.org/bot${token}/deleteWebhook`);
     await sleep(1000);
-    await editMessageText(chatId, messageId + 1, "• بە سەرکەوتوی ⚡️ سرایەوە !! 🗒 •");
+    await editMessageText(chatId, targetMsgId, "• بە سەرکەوتوی ⚡️ سرایەوە !! 🗒 •");
     await sleep(1000);
     writeState(fromId, "no");
     await bot("sendMessage", {
@@ -690,24 +697,19 @@ https://t.me/ashqa_kamm/3618 🧡
       reply_to_message_id: messageId
     });
   }
-});
-
+}
 
 module.exports = {
   handleWebhook: async (req, res) => {
     try {
       const update = req.body;
-      if (!update || typeof update !== "object") {
-        return res.status(200).json({ ok: true });
+      if (update && typeof update === "object") {
+        await processUpdate(update);
       }
-
-      // لێرەدا ئەگەر فەنکشنێکی تایبەتت هەیە بۆ مامەڵەکردن لەگەڵ updateـەکە بانگی بکە
-      // بۆ نموونە: await handleTelegramUpdate(update);
-
       return res.status(200).json({ ok: true });
     } catch (err) {
       console.error("webhok error:", err);
       return res.status(200).json({ ok: true });
     }
-  },
+  }
 };
