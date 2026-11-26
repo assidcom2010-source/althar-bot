@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 app.use(express.json());
 
-const TOKEN = process.env.BOT_TOKEN || "1145477365:AAF5qLpAuk4SKwa9WYLeVmOPXubSjJcb7Ok";
+const TOKEN = process.env.WEBHOK_BOT_TOKEN || "1145477365:AAFPGKx4l50wbvAsb2JRZLW3iIuhFu_o6WI";
 const ADMIN_ID = process.env.ADMIN_ID ? String(process.env.ADMIN_ID).trim() : "1109412636";
 const PORT = process.env.PORT || 3000;
 
