@@ -358,24 +358,66 @@ Gaming • VIP • Server Support`,
     return;
 }
   
-  if (text.includes("GTA 6 بۆ PS5") || text.includes("GTA6 بۆ PS5")) {
+  iif (text.includes("GTA 6 بۆ PS5") || text.includes("GTA6 بۆ PS5")) {
     await sendMessage(
-      chatId,
-      "🕹️ **GTA 6 — وەشانی PlayStation 5 (PS5)**\n\n• پلاتفۆرم: PS5 / PS5 Pro\n• هەموو هەواڵ، ترەیلەر، و نوێکارییەکانی Grand Theft Auto VI بۆ PS5 لێرە و لە کەناڵی تلیگرام کۆ دەکرێنەوە.\n• دڵنیابە لە پاشەکەوتکردنی جێگای پێویست لەسەر SSD پێش بڵاوبوونەوە و دابەزاندن.",
-      mainKeyboard
+        chatId,
+        `🎮 ALTHAR KURDISH | GTA VI
+
+👑 بەخێربێیت بۆ جیهانی GTA VI!
+
+🕹️ پلاتفۆرم: PlayStation 5 / PS5 Pro
+
+━━━━━━━━━━━━━━
+
+🔑 چۆن یارییەکە لەسەر PS5 دابەزێنیت؟
+
+1️⃣ کۆنسۆڵی PS5 ـەکەت هەڵبکەرەوە.
+2️⃣ بە ئەکاونتی PlayStation Network ـی خۆت داخڵ ببە.
+3️⃣ بچۆ بۆ PlayStation Store.
+4️⃣ GTA VI بگەڕێ و لاپەڕەی یارییەکە بکەرەوە.
+5️⃣ ئەگەر یارییەکە بەردەست بوو، بە ئەکاونتی خۆت بکڕە و Download بکە.
+
+📌 ئەکاونتی خۆت بەکاربهێنە و زانیارییەکانی بپارێزە.
+
+━━━━━━━━━━━━━━
+
+💎 ALTHAR KURDISH
+Gaming • VIP • GTA VI`,
+        mainKeyboard
     );
     return;
-  }
+}
 
-  if (text.includes("GTA6 بۆ Xbox") || text.includes("GTA 6 بۆ Xbox")) {
+if (text.includes("GTA6 بۆ Xbox") || text.includes("GTA 6 بۆ Xbox")) {
     await sendMessage(
-      chatId,
-      "🟢 **GTA 6 — وەشانی Xbox Series X|S**\n\n• پلاتفۆرم: Xbox Series X و Xbox Series S\n• نوێترین زانیاری، وردەکاری، و ئاگادارییەکانی Grand Theft Auto VI بۆ ئێکس بۆکس لێرە بەردەست دەبن.\n• چاودێری کەناڵ و تیک تۆک بکە بۆ هەر نوێکارییەکی فەرمی.",
-      mainKeyboard
+        chatId,
+        `🎮 ALTHAR KURDISH | GTA VI
+
+🟢 ئامادەی ئەزموونی GTA VI لەسەر Xbox؟
+
+🎯 پلاتفۆرم:
+Xbox Series X | Xbox Series S
+
+━━━━━━━━━━━━━━
+
+🔑 چۆن یارییەکە لەسەر Xbox دابەزێنیت؟
+
+1️⃣ کۆنسۆڵی Xbox ـەکەت هەڵبکەرەوە.
+2️⃣ بە ئەکاونتی Microsoft / Xbox ـی خۆت داخڵ ببە.
+3️⃣ بچۆ بۆ Microsoft Store.
+4️⃣ GTA VI بگەڕێ و لاپەڕەی یارییەکە بکەرەوە.
+5️⃣ ئەگەر بەردەست بوو، بە ئەکاونتی خۆت بکڕە و Download بکە.
+
+📌 پێش دابەزاندن، دڵنیابە کە کۆنسۆڵەکەت وەشانی پشتگیریکراوە.
+
+━━━━━━━━━━━━━━
+
+💎 ALTHAR KURDISH
+Gaming • VIP • GTA VI`,
+        mainKeyboard
     );
     return;
-  }
-
+}
   await sendMessage(
     chatId,
     "🎮 نامەکەت گەیشت! بۆ بینینی بەشەکان `/start` بنێرە یان یەکێک لە دوگمەکانی خوارەوە هەڵبژێرە.",
