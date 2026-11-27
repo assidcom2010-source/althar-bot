@@ -1,3 +1,41 @@
+const crypto = require("crypto");
+const fs = require("fs");
+const path = require("path");
+
+const codesFile = path.join(__dirname, "vip_codes.json");
+
+function generateUniqueCode() {
+    let codes = [];
+
+    if (fs.existsSync(codesFile)) {
+        codes = JSON.parse(fs.readFileSync(codesFile, "utf8"));
+    }
+
+    let code;
+
+    do {
+        const randomPart = crypto
+            .randomBytes(6)
+            .toString("hex")
+            .toUpperCase();
+
+        code = "VIP" + randomPart;
+    } while (codes.includes(code));
+
+    codes.push(code);
+
+    fs.writeFileSync(
+        codesFile,
+        JSON.stringify(codes, null, 2),
+        "utf8"
+    );
+
+    return code;
+}
+
+
+
+
 const express = require("express");
 const https = require("https");
 
@@ -267,14 +305,35 @@ https://www.tiktok.com/@_althar
   }
 
   if (text.includes("وەرگرتنی کۆد")) {
-    await sendMessage(
-      chatId,
-      "🔑 **وەرگرتنی کۆد**\n\n• کۆدە چالاکەکان لە کەناڵی تلیگرام و بەشە تایبەتەکان بڵاو دەکرێنەوە.\n• کۆدەکە بە وردی کۆپی بکە و لە شوێنی دیاریکراودا بیلکێنە (Paste).\n• ئەگەر کۆدێک کاری نەکرد، لەوانەیە کاتی بەسەرچووبێت یان سنووری بەکارهێنانی تەواو بووبێت.",
-      mainKeyboard
-    );
-    return;
-  }
 
+    const code = generateUniqueCode();
+
+    await sendMessage(
+        chatId,
+        `🔑 **وەرگرتنی کۆدی تایبەت**
+
+🎁 کۆدی تایبەتت ئامادەیە!
+
+━━━━━━━━━━━━━━
+
+🔐 **کۆدی تۆ:**
+
+\`${code}\`
+
+━━━━━━━━━━━━━━
+
+📌 کۆدەکە کۆپی بکە و لە شوێنی دیاریکراودا بیلکێنە (Paste).
+
+⚠️ تکایە کۆدەکەت بە وردی بەکاربهێنە.
+
+💎 بۆ کۆدی نوێ، دووبارە داوای کۆد بکە.`,
+        mainKeyboard
+    );
+
+    return;
+}
+
+  
   if (text.includes("GTA 6 بۆ PS5") || text.includes("GTA6 بۆ PS5")) {
     await sendMessage(
       chatId,
