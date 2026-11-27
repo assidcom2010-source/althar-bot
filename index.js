@@ -109,32 +109,21 @@ app.post("/webhook", async (req, res) => {
   }
 
   if (text.includes("سێرڤەری خۆڕایی")) {
-    await sendMessage(
-      chatId,
-      `
-      ⚡ سێرڤەری خۆڕایی.          (Free Server)
+  await sendMessage(
+    chatId,
+    `⚡ سێرڤەری خۆڕایی (Free Server)
 
-بۆ وەرگرتنی سێرڤەری خۆرایی:
+بۆ وەرگرتنی سێرڤەری خۆڕایی:
 یەکەم: خۆت تۆمار بکە لە وێبسایت.
+دووەم: کۆنسۆڵەکەت داخڵ بکە.
+سێیەم: دەتوانی پۆینت کۆبکەیتەوە بۆ کراک.
 
-دووەم: کۆنسۆڵەکەت داخل بکە.
-
-سێیەم: دەتوانی پۆینت کۆبکیەوە بۆ کراک
-
-
-
-
-وێبسایت:❤️👇🏻
-
-https://altharkurdishm.kesug.com/
-      
-      
-      `,
-      mainKeyboard
-    );
-    return;
-  }
-
+وێبسایت: ❤️👇🏻
+https://altharkurdishm.kesug.com/`,
+    mainKeyboard
+  );
+  return;
+}
   if (text.includes("سێرڤەری VIP")) {
     await sendMessage(
       chatId,
