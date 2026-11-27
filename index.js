@@ -358,31 +358,42 @@ Gaming • VIP • Server Support`,
     return;
 }
   
-  iif (text.includes("GTA 6 بۆ PS5") || text.includes("GTA6 بۆ PS5")) {
+if (text.includes("GTA 6 بۆ PS5") || text.includes("GTA6 بۆ PS5")) {
     await sendMessage(
         chatId,
         `🎮 ALTHAR KURDISH | GTA VI
 
-👑 بەخێربێیت بۆ جیهانی GTA VI!
+🕹️ GTA VI — PlayStation 5
 
-🕹️ پلاتفۆرم: PlayStation 5 / PS5 Pro
+👑 بەخێربێیت بۆ جیهانی Grand Theft Auto VI!
 
 ━━━━━━━━━━━━━━
 
-🔑 چۆن یارییەکە لەسەر PS5 دابەزێنیت؟
+🎯 پلاتفۆرم:
+• PlayStation 5
+• PlayStation 5 Pro
 
-1️⃣ کۆنسۆڵی PS5 ـەکەت هەڵبکەرەوە.
+📌 زانیاری و ڕێنمایی:
+• نوێترین هەواڵ و زانیارییەکانی GTA VI
+• ڕێنمایی دابەزاندن و چالاککردنی یاری
+• زانیارییەکانی PlayStation Store
+
+━━━━━━━━━━━━━━
+
+🔑 چۆن یارییەکە دابەزێنیت؟
+
+1️⃣ PS5 ـەکەت هەڵبکەرەوە.
 2️⃣ بە ئەکاونتی PlayStation Network ـی خۆت داخڵ ببە.
-3️⃣ بچۆ بۆ PlayStation Store.
+3️⃣ PlayStation Store بکەرەوە.
 4️⃣ GTA VI بگەڕێ و لاپەڕەی یارییەکە بکەرەوە.
-5️⃣ ئەگەر یارییەکە بەردەست بوو، بە ئەکاونتی خۆت بکڕە و Download بکە.
+5️⃣ ئەگەر بەردەست بوو، بە ئەکاونتی خۆت دایبەزێنە.
 
-📌 ئەکاونتی خۆت بەکاربهێنە و زانیارییەکانی بپارێزە.
+💎 بۆ زانیاری و نوێکارییەکان، کەناڵی فەرمی ئێمە چاودێری بکە.
 
-━━━━━━━━━━━━━━
+📢 Telegram:
+https://t.me/althar_kurdish
 
-💎 ALTHAR KURDISH
-Gaming • VIP • GTA VI`,
+👑 ALTHAR KURDISH | GAMING SUPPORT`,
         mainKeyboard
     );
     return;
@@ -393,27 +404,37 @@ if (text.includes("GTA6 بۆ Xbox") || text.includes("GTA 6 بۆ Xbox")) {
         chatId,
         `🎮 ALTHAR KURDISH | GTA VI
 
-🟢 ئامادەی ئەزموونی GTA VI لەسەر Xbox؟
+🟢 GTA VI — Xbox Series X|S
+
+🔥 ئامادەی ئەزموونێکی جیاواز لە جیهانی GTA VI؟
+
+━━━━━━━━━━━━━━
 
 🎯 پلاتفۆرم:
-Xbox Series X | Xbox Series S
+• Xbox Series X
+• Xbox Series S
+
+📌 زانیاری و ڕێنمایی:
+• نوێترین هەواڵ و وردەکارییەکانی GTA VI
+• ڕێنمایی دابەزاندن و چالاککردنی یاری
+• زانیارییەکانی Microsoft Store
 
 ━━━━━━━━━━━━━━
 
-🔑 چۆن یارییەکە لەسەر Xbox دابەزێنیت؟
+🔑 چۆن یارییەکە دابەزێنیت؟
 
-1️⃣ کۆنسۆڵی Xbox ـەکەت هەڵبکەرەوە.
+1️⃣ Xbox ـەکەت هەڵبکەرەوە.
 2️⃣ بە ئەکاونتی Microsoft / Xbox ـی خۆت داخڵ ببە.
-3️⃣ بچۆ بۆ Microsoft Store.
+3️⃣ Microsoft Store بکەرەوە.
 4️⃣ GTA VI بگەڕێ و لاپەڕەی یارییەکە بکەرەوە.
-5️⃣ ئەگەر بەردەست بوو، بە ئەکاونتی خۆت بکڕە و Download بکە.
+5️⃣ ئەگەر بەردەست بوو، بە ئەکاونتی خۆت دایبەزێنە.
 
-📌 پێش دابەزاندن، دڵنیابە کە کۆنسۆڵەکەت وەشانی پشتگیریکراوە.
+💎 بۆ زانیاری و نوێکارییەکان، کەناڵی فەرمی ئێمە چاودێری بکە.
 
-━━━━━━━━━━━━━━
+📢 Telegram:
+https://t.me/althar_kurdish
 
-💎 ALTHAR KURDISH
-Gaming • VIP • GTA VI`,
+👑 ALTHAR KURDISH | GAMING SUPPORT`,
         mainKeyboard
     );
     return;
