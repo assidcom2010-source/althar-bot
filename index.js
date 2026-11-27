@@ -439,6 +439,19 @@ https://t.me/althar_kurdish
     );
     return;
 }
+
+    if (text.includes("فێرکاری بە خۆڕایی")) {
+
+    await bot.copyMessage(
+        chatId,
+        "@althar_kurdish",
+        16
+    );
+
+    return;
+}
+
+    
   await sendMessage(
     chatId,
     "🎮 نامەکەت گەیشت! بۆ بینینی بەشەکان `/start` بنێرە یان یەکێک لە دوگمەکانی خوارەوە هەڵبژێرە.",
