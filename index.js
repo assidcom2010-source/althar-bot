@@ -108,7 +108,7 @@ app.post("/webhook", async (req, res) => {
     return;
   }
 
-  if (text.includes("سێرڤەری خۆڕایی")) {
+  if (text.includes("سێرڤەری خۆڕایی") {
     await sendMessage(
       chatId,
       `
