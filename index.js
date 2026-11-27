@@ -111,7 +111,7 @@ app.post("/webhook", async (req, res) => {
   if (text.includes("سێرڤەری خۆڕایی")) {
     await sendMessage(
       chatId,
-      "
+      `
       ⚡ سێرڤەری خۆڕایی.          (Free Server)
 
 بۆ وەرگرتنی سێرڤەری خۆرایی:
@@ -129,7 +129,7 @@ app.post("/webhook", async (req, res) => {
 https://altharkurdishm.kesug.com/
       
       
-      ",
+      `,
       mainKeyboard
     );
     return;
