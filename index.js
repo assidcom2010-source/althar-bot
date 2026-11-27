@@ -445,14 +445,12 @@ https://t.me/althar_kurdish
     return;
 }
 
-    if (text.includes("فێرکاری بە خۆڕایی")) {
-
-    await bot.copyMessage(
-        chatId,
-        "@althar_kurdish",
-        16
-    );
-
+   if (text && text.includes("فێرکاری بە خۆڕایی")) {
+    await telegramRequest("copyMessage", {
+        chat_id: chatId,
+        from_chat_id: "@althar_kurdish",
+        message_id: 16
+    });
     return;
 }
 
