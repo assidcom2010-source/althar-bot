@@ -66,7 +66,6 @@ const mainKeyboard = {
     [
       { text: "🕹️ GTA 6 بۆ PS5 🎯" },
       { text: "🟢 GTA6 بۆ Xbox 🔥" }
-        ["🎬 فێرکاری بە خۆڕایی!"]
     ]
   ],
   resize_keyboard: true
